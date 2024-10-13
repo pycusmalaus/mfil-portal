@@ -1,0 +1,23 @@
+<h2>Upload Excel File</h2>
+
+<p-fileUpload
+  name="file"
+  accept=".xlsx, .xls"
+  customUpload="true"
+  (uploadHandler)="onFileSelect($event)"
+  (onClear)="clearTableData()"
+  chooseLabel="Select Excel"
+></p-fileUpload>
+
+<p-table [value]="tableData" *ngIf="tableData.length">
+  <ng-template pTemplate="header">
+    <tr>
+      <th *ngFor="let header of headers">{{ header }}</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-row>
+    <tr>
+      <td *ngFor="let header of headers">{{ row[header] }}</td>
+    </tr>
+  </ng-template>
+</p-table>
